@@ -41,7 +41,7 @@ print("fullname" in dict)  # Output: False
 # example
 dict = dict([("name", "John"), ("age", 30), ("city","USA")])
 print(dict)  # Output: {'name': 'John', 'age': 30,'city
-'''
+
 #create nested dictionary
 dict = {
     "name": "John",
@@ -89,9 +89,88 @@ print(dict.pop("age"))  # Output: 30
 # popitem() removes the last inserted key-value pair from the dictionary
 
 
+# ---------------------------------------------------
+
+#Sets in python
+# set is the collection of the unordered itemes.
+# each element in the set is unique & immutable
+set1 = {1, 2, 3, 4, 5,"pritam"}
+collection = set() #empty set
+
+print(set1);
+print(type(set1)); #total no of items
+
+#set methods
+#1.add() - add the item to the set
+set1 = {1, 2, 3, 4, 5}
+set1.add(6)
+print(set1)  # Output: {1, 2, 3, 4,
+#2.clear() - removes all items from the set
+set1 = {1, 2, 3, 4, 5}
+set1.clear()
+print(set1)  # Output: set()
+#3.copy() - Returns a copy of the set
+set1 = {1, 2, 3, 4, 5}
+set1_copy = set1.copy()
+print(set1_copy)  # Output: {1, 2, 3, 4,5}
+#4.remove() - remove the element
+set1 = {1, 2, 3, 4, 5}
+set1.remove(3)
+print(set1)  # Output: {1, 2, 4, 5}
+#5.pop() - remove the random element from the set r
+set1 = {1, 2, 3, 4, 5,"random"}
+print(set1.pop())  # Output: 1
+print(set1.pop())
+#6.union() - #combines both set values & returns new
+set1 = {1, 2, 3, 4, 5}
+set2 = {4, 5, 6, 7, 8}
+print(set1.union(set2)) #{1,2,3,4,5,6,7,8}
+
+#7.intersection() - returns the common values
+set1 = {1, 2, 3, 4, 5}
+set2 = {4, 5, 6, 7, 8}
+print(set1.intersection(set2)) #{4,5}
 
 
+#Practice Questions
+#store the following word meaning in a python dictionary
+# table :"a piece of furnitur","list of faccts & figures"
+# cat :"a small animal"
 
+dictionary ={
+    "cat": "a small animal",
+    "table": ["a piece of furiture","list of facts & figures"]
+}
+
+print(dictionary)
+print(type(dictionary))
+
+#your are given a list of subjects for students .Assume one classroom is required for 1 subjects. How many clssroom are needed by all students
+
+subjects = {
+    "python","java","c++","python","javaScript","java",
+    "python","java","c++","c"
+
+}
+print(subjects)
+print(type(subjects))
+print(len(subjects))
+
+#wap to enter marks of 3 subjects from the user and store them in a dictionary .Start with an empty dictionary & add one by one.Use subject name as key & marks as value
+
+marks = {}
+
+x = int(input("enter phy"))
+marks.update({"phy": x})
+y = int(input("enter chem"))
+marks.update({"chem": y})
+z = int(input("enter math"))
+marks.update({"math": z})   
+print(marks)
+'''
+#figure out a way to store 9 & 9.0 a seprate values in the set .
+values={9,"9.0"}
+print(values)
 
 
 
