@@ -232,8 +232,8 @@ acc1.credit(5000)
 
 
 #Del keyword
-#del keyword is used to delete an object from memory.
-#uesd to delete a variable from memory, used to delete an item from a list, tuple, dictionary, set, etc 
+#del keyword is used to delete properties or object itself.
+
 # del.s1.name
 
 class Student:
@@ -259,12 +259,15 @@ class Account:
         self.__accno = accno
         self.__name = name
         self.__acc_pass = acc_pass
+    def reset_pass(self):
+    print(self.__acc_pass)
+    
 
 acc1 =Account("12345","abcde")
 print(acc1.__accno)
 print(acc1.__acc_pass)
 
- '''
+
 #Inheritance
 
 #Inheritance is a process where one class can inherit the properties and methods of another class. 
@@ -289,11 +292,210 @@ car2 =ToyotaCar("prius")
 print(car1.car_start())
 print(car2.car_stop())
 
+#types of innheritance
+#1.Single Inheritance
+#Single level inheritance is a type of inheritance where a child class inherits the properties and methods of a single parent class.
+# example
+class Animal:
+   def __init__(self, name, age):
+      self.name = name
+      self.age = age
+
+def eat(self):
+   print(self.name + " is eating")
+
+class Dog(Animal):
+    def __init__(self, name, age, breed):
+        super().__init__(name, age)
+        self.breed = breed
+
+     #  creating objects
+dog1 = Animal("Bella", 3 )
+dog2 = Dog("Max", 2,"poddle" )
+print(dog1.name)
+print(dog2.name)
+print(dog2.breed)
+
+#class method
+# A class method is bound to the class & receive the class as an implicit first argument
+# class method is used to create a class from a class
+# note - Static method can't access or modify class state & generally for utility
+
+
+#  example
+class Person:
+    name = 'anonymous'
+    def changeName(self,name):
+        self.name = name
+        @classmethod
+        def changeName(cls,name):
+            cls.name = name
+            
+person1 = Person()
+person1.changeName("John")
+print(person1.name)  
+
+#property method
+#property method is used to get and set the value of a variable
+#property method is used to create a property of a class    
+#example
+class Student :
+    def __init__(self, phy, chem, math):
+        self._phy = phy
+        self._chem = chem
+        self._math = math
+        
+        
+    @property
+    def percentage(self):
+       return str((self._phy + self._chem +self._math)/3)+"%"
+        
+
+stu1 = Student( 98, 97, 99)
+print(stu1.percentage)
+
+stu1._phy =70
+print(stu1.percentage)
+
+
+# polymorphism : Operator Overloading 
+# operator overloading is a feature of object oriented programming that allows us to redefine the behavior of operators 
+#when the same operator is allowed to have diffrent meaning according to the context
+# example
+class ComplexNumber:
+    def __init__(self, real, img):
+        self.real = real
+        self.img = img
+
+    def showNum(self):
+        print(self.real ,"i" ,"+",self.img,"j")
+
+    def addNum(self, num2):
+        newReal= self.real +num2.real
+        newImg = self.img + num2.img
+        return ComplexNumber(newReal, newImg)
+    
+   
+
+num1 =ComplexNumber(1,3)
+num1.showNum()
+num2 =ComplexNumber(4,6)
+num2.showNum()
+
+num3 =num1.addNum(num2)
+num3.showNum()
+
+
+#Dunder functions
+#dunder functions are special functions in python that are used to overload operators
+# example
+class ComplexNumber:
+    def __init__(self, real, img):
+        self.real = real
+        self.img = img
+
+    def showNum(self):
+         print(self.real ,"i" ,"+",self.img,"j")
+    def __add__(self, num2):
+         newReal= self.real +num2.real
+         newImg = self.img + num2.img
+         return ComplexNumber(newReal, newImg)
+        
+    def __sub__(self ,num2):
+        newReal= self.real -num2.real
+        newImg = self.img - num2.img
+        return ComplexNumber(newReal, newImg)
+        
+num1 =ComplexNumber(1,3)
+num1.showNum()
+num2 =ComplexNumber(4,9)
+num2.showNum()
+
+num3 =num1 + num2
+num4 =num2 - num1
+
+num3.showNum()
+num4.showNum()
+
+
+
+
+#let's Practice
+
+#Q Define a Circle class to create a circle with radius r using the constructor . Define a area method of the class which calculates the area of the circle .
+# Define a perimeter () method of the class which allows you to calculate  the perimeter of the circle
+
+class Circle :
+    def __init__(self,radius):
+        self.radius = radius
+    def area (self):
+        return 22/7 * (self.radius ** 2)
+    
+    def perimeter(self):
+        return 2 * 22/7 * self.radius 
+    
+c1 =Circle(34)
+print(c1.area())
+print(c1.perimeter())
+
+
+#Q2 Define a employee class with attribute role ,department & salary .This class  shwoDetail() method
+#create an Engineer class that inherites properties from Employee & 
+
+
+class Employee :
+    def __init__(self, role, department, salary):
+        self.role = role
+        self.department = department
+        self.salary = salary
+
+    def showDetails(self):
+        print("role =",self.role)
+        print("department =",self.department)
+        print("salary =",self.salary)
+
+class Engineer(Employee):
+    def __init__(self, name,age):
+        self.name = name
+        self.age = age
+        super().__init__("Engineer","IT","4000000")
+
+        
+
+Eng1 =Engineer("Pritam Patil", 22)
+Eng1.showDetails()
+
+E1 =Employee("Accountant","Finance", "15000")
+E1.showDetails()
+
+
+'''
+# Q3 Create a class called Order which stores item & its prices
+#Use Dunder function __gt__() to convey that 
+#order> order 2 if price of order > price of order2 
+
+class Order:
+    def __init__(self, item, price):
+        self.item = item
+        self.price = price
+
+    def __gt__(self,odr2): #gt - greater than
+        return self.price > odr2.price
+    
+odr1 = Order("chips",100)
+odr2 = Order("burger",20)
+print(odr1>odr2)
 
 
 
 
 
+
+
+    
+        
+        
+    
 
 
           
